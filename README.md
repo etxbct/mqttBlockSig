@@ -16,9 +16,9 @@ Topic used:
 
 ## Payloads
 State payloads for signals:
-Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
-Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
-Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
+	Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
+	Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
+	Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
 	payload		Main signal			Main Dwarf signal		Distant signal		Dwarf signal
 	stop		red				red				-			two white vertically
@@ -30,9 +30,9 @@ Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 	d80wstop	one green, one flashing green	-				one flashing green	-
 	d80wd80		one green, one flashing white	-				one flashing white	-
 	d80wd40		one green, two flashing green	-				two flashing green	-
-	rt		-				-					-			two white horizontal
-	rtv		-				-					-			two white left diagonal
-	rtf		-				-					-			two white right diagonal
+	rt		-				-				-			two white horizontal
+	rtv		-				-				-			two white left diagonal
+	rtf		-				-				-			two white right diagonal
 
 ## States
 State payloads for Blocks:
