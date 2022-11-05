@@ -16,6 +16,7 @@ Topic used:
 
 ## Payloads
 State payloads for signals:
+
 	Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
 	Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
 	Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
