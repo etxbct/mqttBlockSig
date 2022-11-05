@@ -17,6 +17,11 @@ Topic used:
 	track      : up or down
 	name       : name of the reporter. For traffic it is direction or train id
 
+In Sweden when double track is used one track is the up track (uppspår) and the other track is down track (nedspår).
+If facing the module from backside the nearest track is the down track carrying traffic from right to left.
+The furthest track is the up track carrying traffic from left to right.
+If single track is used then the track is the up track (uppspår).
+
 ### Payloads
 State payloads for signals:
 
