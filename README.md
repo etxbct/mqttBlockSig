@@ -24,7 +24,7 @@ State payloads for signals:
 	Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
 	Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
-Signal aspects for each payload
+Signal aspects for each payload:
 
 	payload		Main signal			Main Dwarf signal		Distant signal		Dwarf signal
 	stop		red				red				-			two white vertically
@@ -41,11 +41,7 @@ Signal aspects for each payload
 	rtf		-				-				-			two white right diagonal
 
 ### States
-State payloads for Blocks:
-{free,occupied}
 
-State payloads for Turnouts:
-{closed,thrown}
-
-State payloads for Traffic direction:
-{up,down}
+	State payloads for Blocks:	{free,occupied}
+	State payloads for Turnouts:	{closed,thrown}
+	State payloads for Traffic direction:	{up,down}
