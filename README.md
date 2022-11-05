@@ -25,14 +25,14 @@ Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 	d80		one green			right green			-			-
 	d40		two green			left green			-			-
 	d40short	three green			-				-			-
-	d80v		-				right flashing green		-				-
-	d40v		-				left flashing green		-				-
+	d80v		-				right flashing green		-			-
+	d40v		-				left flashing green		-			-
 	d80wstop	one green, one flashing green	-				one flashing green	-
 	d80wd80		one green, one flashing white	-				one flashing white	-
 	d80wd40		one green, two flashing green	-				two flashing green	-
-	rt		-				-					-					two white horizontal
-	rtv		-				-					-					two white left diagonal
-	rtf		-				-					-					two white right diagonal
+	rt		-				-					-			two white horizontal
+	rtv		-				-					-			two white left diagonal
+	rtf		-				-					-			two white right diagonal
 
 ## States
 State payloads for Blocks:
