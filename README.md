@@ -1,6 +1,15 @@
 # mqttBlockSig
 Is a Swedish block signal module.
 
+In Sweden when double track is used one track is the up track (uppspår) and the other track is down track (nedspår).
+If facing the module from backside the nearest track is the down track (nedspår) carrying traffic from right to left.
+The furthest track is the up track (uppspår) carrying traffic from left to right.
+If single track is used then the track is the up track (uppspår).
+
+For train direction "up" is when trains are going in default traffic direction.
+For train Direction "down" is when trains are going in oposite direction.
+So for a single track; if train is going from left to right it is having the traffic direction "up".
+
 ### Topics
 Topic used:
 
@@ -20,36 +29,32 @@ Topic used:
 	state      : reported state.
 	id         : train id.
 
-In Sweden when double track is used one track is the up track (uppspår) and the other track is down track (nedspår).
-If facing the module from backside the nearest track is the down track carrying traffic from right to left.
-The furthest track is the up track carrying traffic from left to right.
-If single track is used then the track is the up track (uppspår).
-
 ### Payloads
 State payloads for signals:
 
-	Main signal (huvudsignal)   {stop,d80,d40,d40short,d80v,d40v}
-	Distant signal (försignal)  {d80wstop,d80wd80,d80wd40}
-	Dwarf signal (dvärgsignal)  {stop,rt,rtv,rtf}
+	Main signal (huvudsignal)             : {stop,d40,d80,d40short}
+	Main dwarf signal (Huvuddvärgsignal)  : {stop,d40,d80,d40v,d80v}
+	Distant signal (försignal)            : {d80wstop,d80wd40,d80wd80}
+	Dwarf signal (dvärgsignal)            : {stop,rt,rtv,rtf}
 
 State payload for other objects:
 
-	Turnouts                    {closed,thrown}
-	Blocks                      {free,occupied}
-	Direction                   {up,down}
+	Turnouts                              : {closed,thrown}
+	Blocks                                : {free,occupied}
+	Direction                             : {up,down}
 
 ### Signal aspects
 
 	payload     Main signal                     Main Dwarf signal       Distant signal      Dwarf signal
 	stop        red                             red                     -                   two white vertically
-	d80         one green                       right green             -                   -
 	d40         two green                       left green              -                   -
+	d80         one green                       right green             -                   -
 	d40short    three green                     -                       -                   -
-	d80v        -                               right flashing green    -                   -
 	d40v        -                               left flashing green     -                   -
+	d80v        -                               right flashing green    -                   -
 	d80wstop    one green, one flashing green   -                       one flashing green  -
-	d80wd80     one green, one flashing white   -                       one flashing white  -
 	d80wd40     one green, two flashing green   -                       two flashing green  -
+	d80wd80     one green, one flashing white   -                       one flashing white  -
 	rt          -                               -                       -                   two white horizontal
 	rtv         -                               -                       -                   two white left diagonal
 	rtf         -                               -                       -                   two white right diagonal
