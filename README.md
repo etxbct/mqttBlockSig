@@ -5,10 +5,10 @@ Is a Swedish block signal module.
 Topic used:
 
 	type		root	/node	/report type	/track	/name	/state
-	Signals   - mqtt_n/bs-1	/signal		/up	/cda1		/state
-	Blocks    - mqtt_n/bs-1	/block		/up	/s123		/state
-	Turnouts  - mqtt_n/cda	/turnout	/up	/vx23		/state
-	Traffic   - mqtt_n/bs-1	/traffic	/up	/direction	/state
+	Signals   - mqtt_n	/bs-1	/signal		/up	/cda1		/state
+	Blocks    - mqtt_n	/bs-1	/block		/up	/s123		/state
+	Turnouts  - mqtt_n	/cda	/turnout	/up	/vx23		/state
+	Traffic   - mqtt_n	/bs-1	/traffic	/up	/direction	/state
 
 
  root        : name of MQTT root
