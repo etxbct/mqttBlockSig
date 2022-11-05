@@ -1,5 +1,5 @@
 # mqttBlockSig
-This program is realizeing a Swedish block signal module for single track.
+Is a Swedish block signal module.
 
 Topic used:
              root  /node /report type  /track  /name     /state
@@ -20,7 +20,7 @@ Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
 Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
 Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
-			Main signal						Main Dwarf signal		Distant signal		Dwarf signal
+payload		Main signal						Main Dwarf signal		Distant signal		Dwarf signal
  stop		red								red						-					two white vertically
  d80		one green						right green				-					-
  d40		two green						left green				-					-
