@@ -14,6 +14,7 @@ Topic used:
  track       : up or down
  name        : name of the reporter. For traffic it is direction or train id
 
+## Payloads
 State payloads for signals:
 Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
 Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
@@ -33,7 +34,7 @@ Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
  rtv		-								-						-					two white left diagonal
  rtf		-								-						-					two white right diagonal
 
-
+## States
 State payloads for Blocks:
 {free,occupied}
 
