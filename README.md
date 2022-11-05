@@ -42,6 +42,6 @@ Signal aspects for each payload:
 
 ### States
 
-	State payloads for Blocks:	{free,occupied}
-	State payloads for Turnouts:	{closed,thrown}
+	State payloads for Blocks:		{free,occupied}
+	State payloads for Turnouts:		{closed,thrown}
 	State payloads for Traffic direction:	{up,down}
