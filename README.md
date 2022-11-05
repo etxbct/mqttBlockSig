@@ -20,17 +20,17 @@ Main signal (huvudsignal)	{stop,d80,d40,d40short,d80v,d40v}
 Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
 Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
-	payload		Main signal						Main Dwarf signal		Distant signal		Dwarf signal
-	stop		red								red						-					two white vertically
+	payload		Main signal					Main Dwarf signal		Distant signal		Dwarf signal
+	stop		red							red						-					two white vertically
 	d80		one green						right green				-					-
 	d40		two green						left green				-					-
-	d40short	three green						-						-					-
-	d80v       -								right flashing green	-					-
-	d40v		-								left flashing green		-					-
+	d40short	three green					-						-					-
+	d80v		-							right flashing green	-					-
+	d40v		-							left flashing green		-					-
 	d80wstop	one green, one flashing green	-						one flashing green	-
-	d80wd80	one green, one flashing white	-						one flashing white	-
-	d80wd40	one green, two flashing green	-						two flashing green	-
-	rt			-								-						-					two white horizontal
+	d80wd80		one green, one flashing white	-						one flashing white	-
+	d80wd40		one green, two flashing green	-						two flashing green	-
+	rt		-								-						-					two white horizontal
 	rtv		-								-						-					two white left diagonal
 	rtf		-								-						-					two white right diagonal
 
