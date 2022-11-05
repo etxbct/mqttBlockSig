@@ -22,11 +22,11 @@ Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
 	payload		Main signal			Main Dwarf signal		Distant signal		Dwarf signal
 	stop		red				red						-					two white vertically
-	d80		one green			right green				-					-
-	d40		two green			left green				-					-
-	d40short	three green				-						-					-
-	d80v		-					right flashing green		-					-
-	d40v		-					left flashing green		-					-
+	d80		one green			right green				-				-
+	d40		two green			left green				-				-
+	d40short	three green			-						-				-
+	d80v		-				right flashing green		-				-
+	d40v		-				left flashing green		-				-
 	d80wstop	one green, one flashing green	-				one flashing green	-
 	d80wd80		one green, one flashing white	-				one flashing white	-
 	d80wd40		one green, two flashing green	-				two flashing green	-
