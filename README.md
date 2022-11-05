@@ -9,13 +9,16 @@ Topic used:
 	Blocks    - mqtt_n  /bs-1   /block          /up     /s123       /state
 	Turnouts  - mqtt_n  /cda    /turnout        /up     /vx23       /state
 	Traffic   - mqtt_n  /bs-1   /traffic        /up     /direction  /state
+	Traffic   - mqtt_n  /bs-1   /traffic        /up     /train      /id
 
 
-	root       : name of MQTT root
-	node       : name of the MQTT node
-	report type: type of reporter
-	track      : up or down
-	name       : name of the reporter. For traffic it is direction or train id
+	root       : name of MQTT root.
+	node       : name of the MQTT node.
+	report type: type of reporter.
+	track      : up or down.
+	name       : name of the reporter.
+	state      : reported state.
+	id         : train id.
 
 In Sweden when double track is used one track is the up track (uppspår) and the other track is down track (nedspår).
 If facing the module from backside the nearest track is the down track carrying traffic from right to left.
@@ -28,6 +31,12 @@ State payloads for signals:
 	Main signal (huvudsignal)   {stop,d80,d40,d40short,d80v,d40v}
 	Distant signal (försignal)  {d80wstop,d80wd80,d80wd40}
 	Dwarf signal (dvärgsignal)  {stop,rt,rtv,rtf}
+
+State payload for other objects:
+
+	Turnouts                    {closed,thrown}
+	Blocks                      {free,occupied}
+	Direction                   {up,down}
 
 ### Signal aspects
 
@@ -45,8 +54,3 @@ State payloads for signals:
 	rtv         -                               -                       -                   two white left diagonal
 	rtf         -                               -                       -                   two white right diagonal
 
-### States
-
-	State payloads for Blocks           :   {free,occupied}
-	State payloads for Turnouts         :   {closed,thrown}
-	State payloads for Traffic direction:   {up,down}
