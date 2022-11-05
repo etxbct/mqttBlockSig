@@ -24,7 +24,7 @@ State payloads for signals:
 	Distant signal (försignal)	{d80wstop,d80wd80,d80wd40}
 	Dwarf signal (dvärgsignal)	{stop,rt,rtv,rtf}
 
-Signal aspects for each payload:
+### Signal aspects
 
 	payload		Main signal			Main Dwarf signal		Distant signal		Dwarf signal
 	stop		red				red				-			two white vertically
