@@ -14,9 +14,10 @@ For train Direction *down* is when trains are going in oposite direction.
 So for a single track; if train is going from left to right it is having the traffic direction *up*.
 
 ## Message Types
-There are two basic types of messages that can be used: "command" and "data". Block signal uses only data messages.
+There are two basic types of messages that can be used: "command" and "data".
 
 ### Data messages
+
 The "data" type messages are used to report information from one node to other nodes concerning the state of "something".
 The data messages are intended to be one-to-many.
 
@@ -27,6 +28,44 @@ The "something" could also be a "ping" message proclaiming that the node is aliv
 Data type message topics always begin with the prefix "dt":
 
 - "dt / `<scale>` / `<type>` / `<node-id>` / `<port_id>`" - data message
+
+## Command messages
+
+The other broad class of messages are "commands". These messages are intended to be one-to-one type messages. One node requests another node perform an operation. "Set signal block-1 to approach". The subscribing node processes the command request and publishes a response. "Signal 123 has been set to approach".
+
+>Since MQTT topics are being used to control message flow, the requesting node does not really know which actual node will respond to the command request. Any physical node could have subscribed to the topic in question.
+
+Command message topics begin with the prefix of "cmd". Whether a "command" message is a request or response is indicated by the last term of the topic:
+
+- "cmd / `<scale>` / `<type>` / `<node-id>` / `<port_id>` / req" - command request
+- "cmd / `<scale>` / `<type>` / `<node-id>` / `<port_id>` / res" - command response
+
+>Response? Why do nodes need to send a response?
+Please remember that MQTT is a distributed message system. The node making a request does not directly communicate with the node that will perform the operation. All messaging is indirect via a broker computer. Without a response mechanism, the requestor does not know if its request was even received let alone successfully carried out.
+
+>MQTT does have a built in mechanism to ensure messages are delivered. It is called Quality if Service (QOS). It is a mechanism handled in the low level MQTT client library code. Depending which client library you are using you may see different levels of support for QOS. The lowest level of QOS, level 0 is fine to use for MQTT-LCP.
+
+### Session ID
+
+Two particular parts of the request body are very import in the request/response pair. First, the request body must contain a session id that requestor uses to match responses to outstanding request. A requestor may have many outstanding requests at one time. Imaging a throttle requesting a certain route. If there are six turnouts in the route, the throttle may issue six different switch requests. Having the same session id in the response that was in the request allows the throttle to know which switches were changed by matching responses to requests.
+
+### Respond To
+
+The other important part of the request is the "respond-to". It is used by the responder as the topic of the response it publishes to the requestor. In snail-mail terms, it is the return address or in email it is the “from”.
+
+It is recommended that the response topic be the in this form:
+
+Topic: `cmd/h0/node/node-id`
+
+To receive the responses, the requesting node would subscribe to:
+
+Subscribe: `cmd/h0/node/<node-id>/#`
+
+Thereafter no matter what kind of request (track, cab,switch) was made by the requestor node, the responses could be received at one point in app.
+
+### Used cmd by mqttBlockSig
+
+The only used cmd topic used is to send the inventory. The mqtt-registry sends a report/req command to every MQTT node to report its inventory.
 
 ### Topics
 Topic used for signals, blocks and turnouts:
@@ -97,3 +136,30 @@ Reported state for other report types:
 	rtv         -                               -                       -                   two white left diagonal
 	rtf         -                               -                       -                   two white right diagonal
 
+### Example of messages
+
+Topic: `dt/h0/ping/bs-1`
+Body: `{"ping": {"version":"1.0", "session-id":"dt:1605207768", "timestamp":1605207768,
+"node-id":"bs-1", "state": {"reported":"ping"}}}`
+
+Topic: `dt/h0/signal/bs-1/block-1`
+Body: `{"signal": {"version":"1.0", "timestamp":1590344126, "session-id":"dt:1590344126",
+"node-id":"bs-1", "port-id":"block-1", "state": {"reported":"d80"}}}`
+
+Topic: `dt/h0/sensor/bs-1/block-1`
+Body: `{"sensor": {"version":"1.0", "timestamp":1590339121, "session-id":"dt:1590339121",
+"node-id":"bs-1", "port-id":"block-1", "identity":"1234",
+"state": {"reported":"occupied"},
+"metadata": {"type": "railcom", "facing":"b-out"}}}`
+
+Topic: `cmd/h0/node/bs-1/report/req`
+Body: `{"inventory": {"version":"1.0", "timestamp":1680635134, "session-id":"req:1680635134",
+"respond-to":"cmd/h0/node/mqtt-registry/res",
+"node-id":"mqtt-registry",
+"state": {"desired": {"report": "inventory"}}}}`
+
+Topic: `cmd/h0/node/mqtt-registry/res`
+Body: `{"inventory": {"version":"1.0", "timestamp":1680635193, "session-id":"req:1680635134",
+"node-id":"bs-1",
+"state": {"desired": {"report": "inventory"}, "reported": {"report": "inventory"}},
+"metadata": {...}}}`
