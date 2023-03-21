@@ -26,29 +26,28 @@ The "something" could also be a "ping" message proclaiming that the node is aliv
 
 Data type message topics always begin with the prefix "dt":
 
-- "dt / <scale> / <type> / <node-id> / <port_id>" - data message
+- "dt / `<scale>` / `<type>` / `<node-id>` / `<port_id>`" - data message
 
 ### Topics
 Topic used for signals, blocks and turnouts:
 
-	type        msg-type /scale-id /type    /node-id /port-id
-	Signals   - dt       /h0       /signal  /bs-1    /a
-	Blocks    - dt       /h0       /sensor  /bs-1    /b
-	Turnouts  - dt       /h0       /switch  /cda     /a
-	Traffic   - dt       /h0       /traffic /bs-1    /a
-	Traffic   - dt       /h0       /traffic /bs-1    /b
+	type        msg-type /scale /type    /node-id /port-id
+	Signals   - dt       /h0    /signal  /bs-1    /a-out
+	Blocks    - dt       /h0    /sensor  /bs-1    /s1
+	Turnouts  - dt       /h0    /switch  /cda     /vx21
+	Traffic   - dt       /h0    /traffic /bs-1    /a-out
 
-	msg-type   : name of MQTT root.
+	msg-type   : dt or cmd.
 	scale      : track scale.
-	type       : type of reporter.
-	node-id    : name of the MQTT client.
-	port-id    : 
+	type       : The type of message.
+	node-id    : The name of the application node.
+	port-id    : Optional identifier for a port controlled by a node. 
 
 ### Payload
 MQTT message topics are used to control the routing of the messages.
 The MQTT message body, on the other hand, contains the contents of the message.
 
-The body is a JSON formatted message body. Each message body's JSON conforms to a format suggested by the Amazon AWS Whitepaper <https://d1.awsstatic.com/whitepapers/Designing_MQTT_Topics_for_AWS_IoT_Core.pdf>.
+The body is a JSON formatted message body. Each message body's JSON conforms to a format suggested by the [Amazon AWS Whitepaper](https://d1.awsstatic.com/whitepapers/Designing_MQTT_Topics_for_AWS_IoT_Core.pdf).
 
 There are some common elements in all JSON message bodies:
 
@@ -57,7 +56,7 @@ There are some common elements in all JSON message bodies:
 - "timestamp" : time message was sent in seconds since the unix epoch (real time, not fastclock)
 - "session-id" : a unique identifier for the message.
 
-Exception: The session-id in a response must match the session-id of the corresponding request message.
+>Exception: The session-id in a response must match the session-id of the corresponding request message.
 
 - "node-id" : The application node id to receive the message. Matches node-id in message topics.
 - "port-id" : The port on the receiving node to which the message is to be applied. Matches port-id in the message topic
@@ -69,23 +68,22 @@ Exception: The session-id in a response must match the session-id of the corresp
 		- reported : The current state of a port: "closed", "off", etc. Used command response and data messages
 - "metadata" : Optional. Varies by message type.
 
-Payloads for signals:
+Reported state for signals:
 
-	Main signal (huvudsignal)           : {stop,d40,d80,d40short}
-	Main dwarf signal (Huvuddvärgsignal): {stop,d40,d80,d40v,d80v}
-	Distant signal (försignal)          : {d80wstop,d80wd40,d80wd80}
-	Dwarf signal (dvärgsignal)          : {stop,rt,rtv,rtf}
+	Main signal (huvudsignal)           : "state": {"reported": "stop" or "d40" or "d80" or "d40short"}
+	Main dwarf signal (Huvuddvärgsignal): "state": {"reported": "stop" or "d40" or "d80" or "d40v" or "d80v"}
+	Distant signal (försignal)          : "state": {"reported": "d80wstop" or "d80wd40" or "d80wd80"}
+	Dwarf signal (dvärgsignal)          : "state": {"reported": "stop" or "rt" or "rtv" or "rtf"}
 
-Payload for other report types:
+Reported state for other report types:
 
-	Switch                              : {closed,thrown}
-	Sensor                              : {free,occupied}
-	Traffic/direction                   : {up,down}
-	Traffic/train                       : id (schedule number for the train)
+	switch                              : "state": {"reported": "closed" or "thrown"}
+	sensor                              : "state": {"reported": "free" or "occupied"}
+	traffic                             : "state": {"reported": "out" or "in"}
 
 ### Signal aspects
 
-	payload     Main signal                     Main Dwarf signal       Distant signal      Dwarf signal
+	reported    Main signal                     Main Dwarf signal       Distant signal      Dwarf signal
 	stop        red                             red                     -                   two white vertically
 	d40         two green                       left green              -                   -
 	d80         one green                       right green             -                   -
