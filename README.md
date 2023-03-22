@@ -74,13 +74,12 @@ Topic used for signals, blocks and turnouts:
 	Signals   - dt       /h0    /signal  /bs-1    /a-out
 	Blocks    - dt       /h0    /sensor  /bs-1    /s1
 	Turnouts  - dt       /h0    /switch  /cda     /vx21
-	Traffic   - dt       /h0    /traffic /bs-1    /a-out
 
 	msg-type   : dt or cmd.
 	scale      : track scale.
 	type       : The type of message.
 	node-id    : The name of the application node.
-	port-id    : Optional identifier for a port controlled by a node. 
+	port-id    : Optional identifier for a port controlled by a node, like the name of a block, a turnout or a signal. 
 
 ### Payload
 MQTT message topics are used to control the routing of the messages.
@@ -118,7 +117,6 @@ Reported state for other report types:
 
 	switch                              : "state": {"reported": "closed" or "thrown"}
 	sensor                              : "state": {"reported": "free" or "occupied"}
-	traffic                             : "state": {"reported": "out" or "in"}
 
 ### Signal aspects
 
