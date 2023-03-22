@@ -146,11 +146,11 @@ Topic: `dt/h0/signal/bs-1/a-in`
 Body: `{"signal": {"version":"1.0", "timestamp":1590344126, "session-id":"dt:1590344126",
 "node-id":"bs-1", "port-id":"a-in", "state": {"reported":"d80"}}}`
 
-Topic: `dt/h0/sensor/bs-1/block-1`
+Topic: `dt/h0/sensor/bs-1/s1`
 Body: `{"sensor": {"version":"1.0", "timestamp":1590339121, "session-id":"dt:1590339121",
-"node-id":"bs-1", "port-id":"block-1", "identity":"1234",
+"node-id":"bs-1", "port-id":"s1", "identity":"1234",
 "state": {"reported":"occupied"},
-"metadata": {"type": "railcom", "facing":"b-out"}}}`
+"metadata": {"type": "ir", "facing":"b-out"}}}`
 
 Topic: `cmd/h0/node/bs-1/report/req`
 Body: `{"inventory": {"version":"1.0", "timestamp":1680635134, "session-id":"req:1680635134",
