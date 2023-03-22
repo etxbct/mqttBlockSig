@@ -142,9 +142,9 @@ Topic: `dt/h0/ping/bs-1`
 Body: `{"ping": {"version":"1.0", "session-id":"dt:1605207768", "timestamp":1605207768,
 "node-id":"bs-1", "state": {"reported":"ping"}}}`
 
-Topic: `dt/h0/signal/bs-1/block-1`
+Topic: `dt/h0/signal/bs-1/a-in`
 Body: `{"signal": {"version":"1.0", "timestamp":1590344126, "session-id":"dt:1590344126",
-"node-id":"bs-1", "port-id":"block-1", "state": {"reported":"d80"}}}`
+"node-id":"bs-1", "port-id":"a-in", "state": {"reported":"d80"}}}`
 
 Topic: `dt/h0/sensor/bs-1/block-1`
 Body: `{"sensor": {"version":"1.0", "timestamp":1590339121, "session-id":"dt:1590339121",
